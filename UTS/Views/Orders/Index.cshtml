@@ -1,0 +1,74 @@
+﻿@model IEnumerable<UTS.Models.Order>
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<h1>ORDER
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</h1>
+
+<p>
+    <a asp-action="Create">Buat Order</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("ID User")
+            </th>
+            <th>
+                @Html.DisplayName("Order Date")
+            </th>
+            <th>
+                @Html.DisplayName("Expire Date")
+            </th>
+            <th>
+                @Html.DisplayName("Code Payment")
+            </th>
+            <th>
+                @Html.DisplayName("ID Packet")
+            </th>
+            <th>
+                @Html.DisplayName("ID Packet Navigation")
+            </th>
+            <th>
+                @Html.DisplayName("ID Status Navigation")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpireDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodePayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPacket1.IdTable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPacketNavigation.IdPacket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdStatusNavigation.IdStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdOrder"><i class="fa fa-marker fa-lg"></i></a> |
+                <a asp-action="Details" asp-route-id="@item.IdOrder"><i class="fas fa-list"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.IdOrder"><i class="fa fa-trash-alt fa-lg"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
